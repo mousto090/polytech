@@ -1,0 +1,21 @@
+{
+  "name": "polythec/inscription",
+  "description": "Projet Institut Polytechnique",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Moustapha",
+      "email": "moustapha.diallo090@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": "^7.4|^8.0",
+    "ext-pdo": "*",
+    "ramsey/uuid": "^4.1"
+  }
+}
