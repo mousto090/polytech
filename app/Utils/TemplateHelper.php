@@ -8,6 +8,7 @@ use App\Models\User;
 class TemplateHelper
 {
     /**
+     * Méthode permettant d'afficher la liste déroulante des pays
      * @param Country[] $countries
      * @param string $selected_id
      * @return string
@@ -26,6 +27,11 @@ class TemplateHelper
         return $html;
     }
 
+    /**
+     * Template d'affichage d'une ligne du tableau listant les utilisateurs
+     * ajoutés dans la base
+     * @param User $user
+     */
     public static function list_users_row(User $user)
     {
         ?>

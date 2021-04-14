@@ -31,7 +31,7 @@ class Database
     }
 
     /**
-     * Get class instance
+     * Crée un instance de connection à la base de données
      */
     public static function getInstance(): Database
     {
@@ -42,6 +42,10 @@ class Database
         return self::$instance;
     }
 
+    /**
+     * L'instance de connection
+     * @return PDO
+     */
     public function getConnexion(): PDO
     {
         return $this->connexion;

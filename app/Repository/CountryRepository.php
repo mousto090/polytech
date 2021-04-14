@@ -10,6 +10,10 @@ use PDO;
 
 class CountryRepository
 {
+    /**
+     * Exécute une requête pour charger la liste des pays
+     * @return array
+     */
     public static function all(): array
     {
         $db = Database::getInstance()->getConnexion();

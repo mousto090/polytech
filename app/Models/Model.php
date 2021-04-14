@@ -3,9 +3,11 @@
 
 namespace App\Models;
 
-
-use Ramsey\Uuid\Uuid;
-
+/**
+ * Class hérité par tous les models
+ * Class Model
+ * @package App\Models
+ */
 class Model
 {
     /**
@@ -15,7 +17,7 @@ class Model
     protected string $id;
 
     public function __construct() {
-        $this->setId(Uuid::uuid4());
+        $this->setId(uniqid());
     }
 
     /**

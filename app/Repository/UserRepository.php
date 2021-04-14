@@ -12,6 +12,10 @@ use PDO;
 class UserRepository
 {
 
+    /**
+     * Exécute une requête pour charger les des utilisateurs
+     * @return array
+     */
     public static function all(): array
     {
         $db = Database::getInstance()->getConnexion();
@@ -28,52 +32,72 @@ class UserRepository
         return $users;
     }
 
+    /**
+     * Insert un utilisateur dans la base données
+     * @param User $user
+     * @return bool
+     */
     public static function add(User $user): bool
     {
         $db = Database::getInstance()->getConnexion();
         $statement = $db->prepare(
-            'insert into users set id=:id, first_name=:first_name, last_name=:last_name, country_id=:country_id'
+            'insert into users (id, first_name, last_name, country_id) VALUES (?, ?, ?, ?)'
         );
 
         return $statement->execute([
-            'id' => $user->getId(),
-            'first_name' => $user->getFirstName(),
-            'last_name' => $user->getLastName(),
-            'country_id' => $user->getCountryId(),
+             $user->getId(),
+             $user->getFirstName(),
+             $user->getLastName(),
+             $user->getCountryId(),
         ]);
     }
 
+    /**
+     * Cherche un utilisateur par son identifiant
+     * @param string $id
+     * @return User
+     */
     public static function get(string $id): User
     {
         $db = Database::getInstance()->getConnexion();
-        $statement = $db->prepare('SELECT * FROM users WHERE id=:id');
-        $statement->execute(['id' => $id]);
+        $statement = $db->prepare('SELECT * FROM users WHERE id=?');
+        $statement->execute([$id]);
         $data = $statement->fetch(PDO::FETCH_ASSOC);
 
         return new User($data);
     }
 
-
+    /**
+     * Exécute une requête pour mettre à jour les informations d'un
+     * utilisateur
+     * @param User $user
+     * @return bool
+     */
     public static function update(User $user): bool
     {
         $db = Database::getInstance()->getConnexion();
         $statement = $db->prepare(
-            'update users set first_name=:first_name, last_name=:last_name, country_id=:country_id where id=:id'
+            'UPDATE users SET first_name=?, last_name=?, country_id=? where id=?'
         );
 
         return $statement->execute([
-            'id' => $user->getId(),
-            'first_name' => $user->getFirstName(),
-            'last_name' => $user->getLastName(),
-            'country_id' => $user->getCountryId(),
+            $user->getFirstName(),
+            $user->getLastName(),
+            $user->getCountryId(),
+            $user->getId()
         ]);
     }
 
+    /**
+     * Supprimer un utilisateur par id
+     * @param $id
+     * @return bool
+     */
     public static function delete($id): bool
     {
         $db = Database::getInstance()->getConnexion();
-        $statement = $db->prepare('delete from users where id=:id');
+        $statement = $db->prepare('delete from users where id=?');
 
-        return $statement->execute(['id' => $id]);
+        return $statement->execute([$id]);
     }
 }

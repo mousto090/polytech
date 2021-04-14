@@ -5,6 +5,11 @@ use App\Utils\Utils;
 
 $controller = new UserController();
 
+/**
+ * Le point de routage de l'application, selon l'action
+ * effectuéé, nous renvoyons la page correspondante
+ */
+
 try {
     Utils::init_session(false);
     $action = $_GET['action'] ?? '';
@@ -13,8 +18,11 @@ try {
             $controller->register();
             break;
         case 'store':
+            /**
+             * Vérifie que le token est valid avant de continuer
+             */
             if (!Utils::verify_token()) {
-                throw new Exception('CSRF Token non valid', 99);
+                throw new Exception('CSRF Token non valide', 99);
             }
             $controller->store();
             break;
@@ -22,8 +30,11 @@ try {
             $controller->update();
             break;
         case 'save-update':
+            /**
+             * Vérifie que le token est valid avant de continuer
+             */
             if (!Utils::verify_token()) {
-                throw new Exception('CSRF Token non valid', 99);
+                throw new Exception('CSRF Token non valide', 99);
             }
             $controller->save_update();
             break;

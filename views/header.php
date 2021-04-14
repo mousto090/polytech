@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= \App\Utils\Utils::page_title() ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@0.7.2/dist/tailwind-ui.min.css">
+    <link rel="stylesheet" href="../public/css/tailwind-ui.min.css">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <style>

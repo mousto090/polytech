@@ -15,7 +15,6 @@
   },
   "require": {
     "php": "^7.4|^8.0",
-    "ext-pdo": "*",
-    "ramsey/uuid": "^4.1"
+    "ext-pdo": "*"
   }
 }

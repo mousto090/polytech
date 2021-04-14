@@ -11,7 +11,7 @@ Pour faire tourner le projet, vous avez besoin :
 
 - Installer composer
 
-- Ensuite dans un terminer exécuter `composer install` pour installer les dépendances
+- Ensuite dans un terminer exécuter `composer install` pour génerer les class autoloader
 
 - Le script de la base de données se trouve dans le fichier `app/database/polytech.sql`
 

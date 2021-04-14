@@ -11,19 +11,30 @@ use App\Repository\UserRepository;
 class UserController
 {
 
+    /**
+     * Affichage la page d'accueil avec la liste de tous
+     * les utilisateurs
+     */
     public function index()
     {
         $users = UserRepository::all();
         require_once VIEWS_DIR . 'home.php';
     }
 
-
+    /**
+     * Affichage du formulaire pour ajouter un nouvel utilisateur
+     */
     public function register()
     {
         $countries = CountryRepository::all();
         require VIEWS_DIR . 'register.php';
     }
 
+    /**
+     * Récupèration les données du formulaire d'inscription
+     * pour une sauvegarder dans la base puis affichage la liste
+     * des utilisateurs
+     */
     public function store()
     {
         $data = [
@@ -38,6 +49,9 @@ class UserController
         $this->index();
     }
 
+    /**
+     * Affiche le formulaire pour mettre à jour un utilisateur
+     */
     public function update()
     {
         $id = $_GET['id'] ?? 0;
@@ -50,6 +64,10 @@ class UserController
         require VIEWS_DIR . 'update.php';
     }
 
+    /**
+     * Récupération des informations du formulaire de mise à jour
+     * d'un utilisatuer et mise à jour de l'enregistrement dans la base
+     */
     public function save_update()
     {
         $data = [
@@ -65,6 +83,10 @@ class UserController
         $this->index();
     }
 
+    /**
+     * Suppression d'un utilisateur par id et
+     * réaffichage de la liste des utilisateurs restants
+     */
     public function delete()
     {
         $id = $_GET['id'];
@@ -74,6 +96,11 @@ class UserController
         $this->index();
     }
 
+    /**
+     * Lorsqu'une erreur se produit on affiche pour faciliter le
+     * débuggage en mode développement
+     * @param \Exception $e
+     */
     public function error(\Exception $e)
     {
         $error = $e->getMessage();
